@@ -4,7 +4,7 @@
   <title><![CDATA[Hung's Blog]]></title>
   <link href="http://qhung49.github.io/atom.xml" rel="self"/>
   <link href="http://qhung49.github.io/"/>
-  <updated>2013-05-26T17:26:47+08:00</updated>
+  <updated>2013-05-27T01:34:02+08:00</updated>
   <id>http://qhung49.github.io/</id>
   <author>
     <name><![CDATA[Hung Mai]]></name>
@@ -14,13 +14,110 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Blogging with existing Octopress blog on Windows]]></title>
+    <link href="http://qhung49.github.io/blog/2013/05/26/blogging-with-existing-octopress-repository-on-windows/"/>
+    <updated>2013-05-26T18:07:00+08:00</updated>
+    <id>http://qhung49.github.io/blog/2013/05/26/blogging-with-existing-octopress-repository-on-windows</id>
+    <content type="html"><![CDATA[<p>I mostly use Windows 8 now, but there&rsquo;s no official documentation from Octopress for Windows.</p>
+
+<p>Here are the steps to set everything up.</p>
+
+<h5>Prerequisites: There&rsquo;s an existing Octopress repository on your Github Page. If you want to set up a fresh Octopress blog, use the <a href="http://octopress.org/docs/setup/">official documnetnation</a></h5>
+
+<h4>1. Install <a href="http://railsinstaller.org/">RailsInstaller</a></h4>
+
+<h4>2. Install <a href="http://www.python.org/download/releases/2.7.5/">Python 2.7.5</a>.</h4>
+
+<p><strong>Note:</strong> Octopress is not compatible with Python 3.x and above.</p>
+
+<p><strong>Note:</strong> Change the system PATH variable to include python executable:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Windows + X -&gt; System -&gt; Advanced system settings -&gt; Advanced -&gt; Environment variables -&gt; System variables -&gt; Path.
+</span><span class='line'>Add ;C:\Python27 at the end</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>3. Setup Octopress</h4>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git clone https://github.com/imathis/octopress.git &lt;your_github_username&gt;.github.io
+</span><span class='line'><span class="nb">cd</span> &lt;your_github_username&gt;.github.io
+</span><span class='line'>ruby --version <span class="c"># Should be Ruby 1.9.3</span>
+</span><span class='line'>rake --version <span class="c"># Should be 0.9.2.2</span>
+</span><span class='line'>bundle install
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>Note:</strong> For <code>git clone</code> I use GitHub-recommended HTTPS instead of SSL.</p>
+
+<p><strong>Note:</strong> For <code>ruby</code> and <code>rake</code>. if you don&rsquo;t have the correct version, try to install it using gem. For example, with <code>rake</code> the current version is <code>10.0.4</code>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>gem install rake --version<span class="o">=</span>0.9.2.2
+</span><span class='line'>gem list rake
+</span><span class='line'>gem uninstall rake --version<span class="o">=</span>10.0.4
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>4. Configure Octopress</h4>
+
+<p><strong>Note:</strong> You do <strong>NOT</strong> need to run <code>rake setup_github_pages</code> since this is an existing Octopress blog.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git remote add octopress https://github.com/imathis/octopress
+</span><span class='line'>git branch -d master
+</span><span class='line'>git config --global credential.helper cache
+</span><span class='line'>git config --global credential.helper <span class="s1">&#39;cache --timeout=3600&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>5. Write your awesome blog, preview and commit frequently to local.</h4>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake generate <span class="o">&amp;&amp;</span> rake preview
+</span><span class='line'>git add .
+</span><span class='line'>git commit -m <span class="s2">&quot;Your commit message&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>Note:</strong> The preview blog is available at <a href="http://localhost:4000">http://localhost:4000</a></p>
+
+<h4>6. Push the source to the remote repository</h4>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git push origin <span class="nb">source</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>7. Deploy to your GitHub Page</h4>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake generate <span class="o">&amp;&amp;</span> rake deploy
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Hello World]]></title>
     <link href="http://qhung49.github.io/blog/2013/05/26/hello-world/"/>
     <updated>2013-05-26T17:18:00+08:00</updated>
     <id>http://qhung49.github.io/blog/2013/05/26/hello-world</id>
     <content type="html"><![CDATA[<p>This is my first Octopress blog.</p>
 
-<p>It takes me several hours to do all the Octopress setup and configuration on Windows. I will try to write down all the steps later.</p>
+<p>Actually, it took me several hours to do all the Octopress setup and configuration on Windows. So far, I <strong>love</strong> the Octopress theme</p>
 ]]></content>
   </entry>
   

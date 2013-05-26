@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Misc | Hung's Blog]]></title>
   <link href="http://qhung49.github.io/blog/categories/misc/atom.xml" rel="self"/>
   <link href="http://qhung49.github.io/"/>
-  <updated>2013-05-26T17:26:47+08:00</updated>
+  <updated>2013-05-27T01:34:02+08:00</updated>
   <id>http://qhung49.github.io/</id>
   <author>
     <name><![CDATA[Hung Mai]]></name>
@@ -20,7 +20,7 @@
     <id>http://qhung49.github.io/blog/2013/05/26/hello-world</id>
     <content type="html"><![CDATA[<p>This is my first Octopress blog.</p>
 
-<p>It takes me several hours to do all the Octopress setup and configuration on Windows. I will try to write down all the steps later.</p>
+<p>Actually, it took me several hours to do all the Octopress setup and configuration on Windows. So far, I <strong>love</strong> the Octopress theme</p>
 ]]></content>
   </entry>
   
